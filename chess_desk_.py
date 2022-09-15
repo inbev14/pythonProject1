@@ -11,9 +11,9 @@ def check_request():
     """ Перевірка запроса на хибу"""
     if len(coordinate) == 2:                        # перевірка довжини
         if not coordinate[0].isdigit():             # Перевірка першого символу на букву
-            if coordinate[0].lower() in lines:      # перевірка першого на збіг потрібних букв
+            if coordinate[0].lower() in lines:        # перевірка першого на збіг потрібних букв
                 if coordinate[1].isdigit():         # перевірка другого символу на цифру
-                    if 1 < int(coordinate[1]) < 9:  # перевірка цифри на величину
+                    if 0 < int(coordinate[1]) < 9:      # перевірка цифри на величину
                         return True
     print("Enter correct request")
     return False
@@ -22,7 +22,7 @@ def check_request():
 def find_letter():
     """ Проходить за списком і повертає літеру """
     for letter in lines:
-        if coordinate[0].lower == letter:
+        if coordinate[0].lower() == letter:
             return letter
     else:
         print("Enter correct coordinate")
