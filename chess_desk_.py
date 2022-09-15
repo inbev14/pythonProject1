@@ -9,11 +9,11 @@ def start_prog():
 
 def check_request():
     """ Перевірка запроса на хибу"""
-    if len(coordinate) == 2:                        # перевірка довжини
-        if not coordinate[0].isdigit():             # Перевірка першого символу на букву
+    if len(coordinate) == 2:                          # перевірка довжини
+        if not coordinate[0].isdigit():               # Перевірка першого символу на букву
             if coordinate[0].lower() in lines:        # перевірка першого на збіг потрібних букв
-                if coordinate[1].isdigit():         # перевірка другого символу на цифру
-                    if 0 < int(coordinate[1]) < 9:      # перевірка цифри на величину
+                if coordinate[1].isdigit():           # перевірка другого символу на цифру
+                    if 0 < int(coordinate[1]) < 9:    # перевірка цифри на величину
                         return True
     print("Enter correct request")
     return False
