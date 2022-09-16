@@ -57,7 +57,7 @@ def check_coord_odd():
 
 
 # запуск програми у циклі з можливістю виходу
-# програму написав без функції через глобальні змінні "coordinate" i "lines"
+# саму програму написав без функції через глобальні змінні "coordinate" i "lines"
 while True:
     start = input("\nEnter any key to continue, 'q' to quit:\n")
     if start == "q":
