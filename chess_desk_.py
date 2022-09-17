@@ -25,7 +25,7 @@ def check_request():
                 if coordinate[1].isdigit():           # перевірка другого символу на цифру
                     if 0 < int(coordinate[1]) < size+1:    # перевірка цифри на величину
                         return letter
-    print("-"*25 + "\nEnter correct request!\n\r" + "-"*25 )
+    print("-" * 25 + "\nEnter correct request!\n" + "-" * 25)
 
 
 def check_coord_1():
@@ -49,8 +49,10 @@ def check_coord_2():
 while True:
     size = 8
     lines = ascii_lowercase[:size]
-    coordinate = input("Enter coordinate to find out what color is cell in chessboard, like 'a1'. \n"
-                       "(You must enter one letter from 'A' to 'H' and one number from 1 to 8 only): \n")
+    coordinate = input("Do you want to find out what color is cell on chessboard?\n"
+                       "Enter coordinate, like 'A1'  . \n"
+                       "(You must enter one letter from 'A' to 'H' and one number from 1 to 8 only, "
+                       "'q' to exit: \n")
     prog = start_prog()
     if prog:
         print("*" * 30 + "\n" + f"Your coordinate '{coordinate.upper()}' is {prog}" + "\n" + "*" * 30 + "\n")
