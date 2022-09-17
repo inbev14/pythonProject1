@@ -1,70 +1,56 @@
+from string import ascii_lowercase
+
+
 def start_prog():
     """Перевірка першої координати й другої в залежності від її парності"""
-    if check_request():
-        if check_coord_1():
-            return check_coord_even()
-        else:
-            return check_coord_odd()
-
-
-def check_request():
-    """ Перевірка запроса на хибу"""
-    if len(coordinate) == 2:                          # перевірка довжини
-        if not coordinate[0].isdigit():               # Перевірка першого символу на букву
-            if coordinate[0].lower() in lines:        # перевірка першого на збіг потрібних букв
-                if coordinate[1].isdigit():           # перевірка другого символу на цифру
-                    if 0 < int(coordinate[1]) < 9:    # перевірка цифри на величину
-                        return True
-    print("Enter correct request")
-    return False
-
-
-def find_letter():
-    """ Проходить за списком і повертає літеру """
-    for letter in lines:
-        if coordinate[0].lower() == letter:
-            return letter
+    first_coord = check_coord_1()
+    if first_coord == "even":
+        color = check_coord_2()
+    elif first_coord == "odd":
+        color = not check_coord_2()
     else:
-        print("Enter correct coordinate")
         return False
+    return "white" if color else "black"
+    
+    
+def check_request():
+    """ Перевірка запроса на хибу або на вихід із програми"""
+    if coordinate == 'q':
+        print("Thank you, good bye!")
+        exit()
+    if len(coordinate) == 2:                          # перевірка довжини
+        if coordinate[0].isalpha():                   # Перевірка першого символу на букву
+            if coordinate[0].lower() in lines:        # перевірка першого на збіг потрібних букв і запам'ятати букву
+                letter = coordinate[0].lower()
+                if coordinate[1].isdigit():           # перевірка другого символу на цифру
+                    if 0 < int(coordinate[1]) < size+1:    # перевірка цифри на величину
+                        return letter
+    print("-"*25 + "\nEnter correct request!\n\r" + "-"*25 )
 
 
 def check_coord_1():
     """Перевірка першої координати (букви), якщо парна, то Тру і навпаки"""
-    letter = find_letter()
+    letter = check_request()
     if letter:
-        if lines.index(letter) % 2 == 0:
-            return True
-        else:
-            return False
+        return "even" if lines.index(letter) % 2 == 0 else "odd"
     return False
 
 
-def check_coord_even():
+def check_coord_2():
     """Перевірка другого символу (числа) координата на парність, якщо буква парна"""
     if int(coordinate[1]) % 2 == 0:
-        return "white"
+        return True
     else:
-        return "black"
-
-
-def check_coord_odd():
-    """Перевірка другого символу (числа) координата на парність, якщо буква не парна"""
-    if int(coordinate[1]) % 2 == 0:
-        return "black"
-    else:
-        return "white"
+        return False
 
 
 # запуск програми у циклі з можливістю виходу
 # саму програму написав без функції через глобальні змінні "coordinate" i "lines"
 while True:
-    start = input("\nEnter any key to continue, 'q' to quit:\n")
-    if start == "q":
-        break
-    lines = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    coordinate = input("Please, enter coordinate to find out what color it is, like 'a1'. \n"
-                       "(You must enter one letter from 'a' to 'h' and one number from 1 to 8 only): \n")
+    size = 8
+    lines = ascii_lowercase[:size]
+    coordinate = input("Enter coordinate to find out what color is cell in chessboard, like 'a1'. \n"
+                       "(You must enter one letter from 'A' to 'H' and one number from 1 to 8 only): \n")
     prog = start_prog()
     if prog:
-        print(f"Your coordinate '{coordinate}' is {prog}.")
+        print("*" * 30 + "\n" + f"Your coordinate '{coordinate.upper()}' is {prog}" + "\n" + "*" * 30 + "\n")
