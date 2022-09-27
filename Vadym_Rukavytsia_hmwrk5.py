@@ -12,7 +12,6 @@ def find_numbers(start=0, stop=0):
     return wanted_numbers
 
 
-print(find_numbers(0, 100))
 if __name__ == '__main__':
     CASES = {
         (1, 10): [1, 2, 3, 4, 5, 6, 7, 8, 9],
