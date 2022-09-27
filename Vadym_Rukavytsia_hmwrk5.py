@@ -21,9 +21,10 @@ if __name__ == '__main__':
         (): [],
     }
     for case, answer in CASES.items():
-        if case:
-            assert find_numbers(case[0], case[1]) == answer
-        assert find_numbers() == []
+        assert find_numbers(*case) == answer
+        
+        
+        # assert find_numbers() == []
        
         # assert find_numbers(1, 100) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]
         # assert find_numbers(1, 1000) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 89, 135, 175, 518, 598]
