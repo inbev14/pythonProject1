@@ -11,22 +11,34 @@ def check_file(filename: str):
         return str(f"{error},\nFile is wrong type!")
 
 
+def check_request(element):
+    if isinstance(element, int):
+        return int(element)
+    elif isinstance(element, str):
+        return str(element)
+
+
 def read_file(filename: str):
-    """Read txt file """
+    """Read txt file and return list with data"""
     with open(filename) as file:
         return [re.findall(r'\w+', data) for data in file.readlines()]
 
 
-def find_element(data: list, el_number: str):
+def find_element(data: list, element):
     """return element by atomic number"""
     for number in data:
-        if number[0] == el_number:
+        if number[0] == element:
             return number
 
 
 def main():
-    el_number = input("Enter element atomic number : ")
-    element = find_element()
+    """main controller"""
+    element = input("Enter element or his number (Enter to quit): ")
+    if element == "":
+        print("Ok, Good Bye")
+        exit()
+    data = read_file(filename)
+    element = find_element(data, element)
     chem_table = PrettyTable()
     chem_table.field_names = ['Atomic Number', 'Symbol', 'Chemical Element']
     chem_table.add_row(element)
@@ -36,5 +48,7 @@ def main():
 
 if __name__ == '__main__':
     filename = 'elements.txt'
-    check_file(filename)
-    main()
+    if check_file(filename):
+        while True:
+            main()
+        
