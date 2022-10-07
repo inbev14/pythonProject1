@@ -26,9 +26,13 @@ def read_file(filename: str):
 
 def find_element(data: list, element):
     """return element by atomic number"""
-    for number in data:
-        if number[0] == element:
-            return number
+    for elem in data:
+        if element.isdigit():
+            if elem[0] == element:
+                return elem
+            return False
+        elif element.isinsta
+    return False
 
 
 def main():
@@ -39,11 +43,13 @@ def main():
         exit()
     data = read_file(filename)
     element = find_element(data, element)
-    chem_table = PrettyTable()
-    chem_table.field_names = ['Atomic Number', 'Symbol', 'Chemical Element']
-    chem_table.add_row(element)
-    print(chem_table)
-    return chem_table
+        if element:
+            chem_table = PrettyTable()
+            chem_table.field_names = ['Atomic Number', 'Symbol', 'Chemical Element']
+            chem_table.add_row(element)
+            print(chem_table)
+            return chem_table
+        
 
 
 if __name__ == '__main__':
