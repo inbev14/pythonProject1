@@ -21,19 +21,19 @@ def make_dictionary_with_emails(full_emails: list):
     return dict_emails
     
     
-def main(dict_emails):
+def main():
+    list_emails = read_file(filename)
+    dict_emails = make_dictionary_with_emails(list_emails)
     email_table = PrettyTable()
-    email_table.field_names = ['Domen', 'number of emails']
-    for domen, email in dict_emails.items():
-        email_table.add_row([domen, len(email)])
+    email_table.field_names = ['domain', 'number of emails']
+    for domain, email in dict_emails.items():
+        email_table.add_row([domain, len(email)])
     return email_table
 
 
 if __name__ == '__main__':
     filename = 'mbox.txt'
-    list_emails = read_file(filename)
-    dict_emails = make_dictionary_with_emails(list_emails)
-    print(main(dict_emails))
+    print(main())
     
     
     
