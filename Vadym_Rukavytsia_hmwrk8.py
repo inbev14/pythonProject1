@@ -16,7 +16,9 @@ def make_dictionary_with_emails(full_emails: list):
     for email in full_emails:
         key = email.split('@')[1]
         dict_emails.setdefault(key, [])
-        if not email in dict_emails[key]:
+        if email in dict_emails[key]:
+            dict_emails[key].append(email)
+        else:
             dict_emails[key].append(email)
     return dict_emails
     

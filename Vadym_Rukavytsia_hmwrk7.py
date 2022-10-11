@@ -48,7 +48,7 @@ def main():
             chem_table.field_names = ['Atomic Number', 'Symbol', 'Chemical Element']
             chem_table.add_row(element)
             print(chem_table)
-            return chem_table
+        return chem_table
         
 
 
