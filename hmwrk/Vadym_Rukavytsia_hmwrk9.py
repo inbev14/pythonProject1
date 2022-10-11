@@ -24,7 +24,7 @@ def make_statistic(throws=1000):
 
 
 def make_table(data: list, throws: int):
-    """print table with data"""
+    """return table with data"""
     table = PrettyTable()
     table.field_names = ['number', 'percent simulations']
     # print(len(data))
