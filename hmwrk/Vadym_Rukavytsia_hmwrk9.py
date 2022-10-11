@@ -26,10 +26,11 @@ def make_statistic(throws=1000):
 def make_table(data: list, throws: int):
     """print table with data"""
     table = PrettyTable()
-    table.field_names = ['number', 'percent simulations', 'expected data']
+    table.field_names = ['number', 'percent simulations']
     # print(len(data))
     for i in data:
-        table.add_row([i[0], round(float(i[1] / throws * 100), 3), 0])
+        table.add_row([i[0], round(float(i[1] / throws * 100), 3)])
+    table.add_column('expected data', [2.78, 5.56, 8.3, 11.11, 13.89, 16.67, 13.89, 11.11, 8.3, 5.56, 2.78])
     return table
 
 
