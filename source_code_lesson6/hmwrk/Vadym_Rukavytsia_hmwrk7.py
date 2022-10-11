@@ -53,7 +53,7 @@ def main():
 
 
 if __name__ == '__main__':
-    filename = 'elements.txt'
+    filename = '../add_files/elements.txt'
     if check_file(filename):
         while True:
             main()

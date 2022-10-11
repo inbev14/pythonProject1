@@ -34,7 +34,7 @@ def main():
 
 
 if __name__ == '__main__':
-    filename = 'mbox.txt'
+    filename = '../add_files/mbox.txt'
     print(main())
     
     

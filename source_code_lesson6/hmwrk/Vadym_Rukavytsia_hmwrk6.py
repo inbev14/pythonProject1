@@ -1,7 +1,7 @@
 from os import path, getcwd  # access
 import re
 
-filename = 'text_example.txt'
+filename = '../add_files/text_example.txt'
 
 
 def find_longest_words(name_file):
