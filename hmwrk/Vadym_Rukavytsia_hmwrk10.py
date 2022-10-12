@@ -21,8 +21,8 @@ def main(phrase: str) -> str:
 
 
 if __name__ == '__main__':
-    text = 'jkl'
+    text = '(a)'
     print(main(text))
     assert main('ad g') == '2304'
     assert main('Hello, World!') == '4433555555666110966677755531111'
-    assert main('Heavy METAL!') == '443328889990633825551111'
+    assert main('"/METAL!")') == '633825551111'
