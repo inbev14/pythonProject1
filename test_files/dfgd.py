@@ -1,3 +1,13 @@
-from hmwrk import Vadym_Rukavytsia_hmwrk9
+from collections import namedtuple
 
-Vadym_Rukavytsia_hmwrk9.main()
+Car = namedtuple('cars', 'model miles')
+cars = [
+    Car('Toyota', 25000),
+    Car('BMW', 43000),
+    Car('Chery', 60000),
+]
+
+for car in cars:
+    print(f"{car.model}")
+    print(f"{car.miles}")
+    

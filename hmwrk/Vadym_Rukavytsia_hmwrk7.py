@@ -31,7 +31,8 @@ def find_element(data: list, element):
             if elem[0] == element:
                 return elem
             return False
-        elif element.isinsta
+        elif element.isalpha():
+            return elem
     return False
 
 
