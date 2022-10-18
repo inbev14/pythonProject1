@@ -9,7 +9,7 @@ def choose_lang(lang: str) -> str:
     """Choosing language"""
     english = ['english', 'eng', 'en', 'usa', 'us', 'инглиш', 'англ', 'английский', 'англійська', 'інглиш', '']
     cyrillic = ['russian', 'rus', 'ru', 'ру', 'cyr', 'cy', 'rushka', 'русня', 'рашка', 'рус', 'кир', 'russia', 'раша']
-    ukrainian = ['uk', 'ukr', 'ukrainian', 'укр', 'ук', 'українська', 'солов\'їна', 'ua']
+    ukrainian = ['uk', 'ukr', 'ukrainian', 'укр', 'ук', 'українська', 'солов\'їна', 'ua', 'юа']
     if lang in english:
         return ENGLISH
     elif lang in ukrainian:
@@ -32,17 +32,8 @@ def make_cypher_key(step: int, lang: str) -> dict:
     return cypher
 
 
-def loading_anim():
-    """Animation loading"""
-    animation = "|/-\\"
-    idx = 0
-    while idx < 15:
-        print(animation[idx % len(animation)], end="\r")
-        idx += 1
-        time.sleep(0.1)
-
-
 def anim_load_bar(decrypt=False):
+    """Animation bar"""
     def scrape_data():
         time.sleep(0.005)
     if decrypt:
@@ -53,7 +44,7 @@ def anim_load_bar(decrypt=False):
             scrape_data()
 
 
-def encrypt_message(text: str, step=3, lang='en', decrypt=False):
+def encrypt_message(text: str, step=3, lang='en', decrypt=False) -> str:
     """Encrypting or decrypting message with step in ascii_letters"""
     cypher = make_cypher_key(step, lang)
     if decrypt:
@@ -73,20 +64,32 @@ def encrypt_message(text: str, step=3, lang='en', decrypt=False):
 def data_collection():
     """Collect data from user"""
     lang = input('Enter language (default="en" or "ua","ru"): ')
-    step = input('Enter key for cypher (number, skip=3): ')
+    language = choose_lang(lang)
+    if  language == ENGLISH:
+        step_message = 'Enter key for cypher (number, skip=3): '
+        decrypt_message = 'Skip for encrypt and any key for decrypt message: '
+        text_message = 'Enter your message: '
+    elif language == UKRAINIAN:
+        step_message = 'Введіть крок шифру (число, пропустити = 3): '
+        decrypt_message = 'Пропусти щоб зашифрувати або введи будь-яку букву для розфирування: '
+        text_message = 'Введи повідомлення: '
+    elif language == CYRILLIC:
+        step_message = 'Введіть крок шифру (число, пропустити = 3): '
+        decrypt_message = 'Пропусти щоб зашифрувати або введи будь-яку букву для розфирування: '
+        text_message = 'Введи повідомлення: '
+    step = input(step_message)
     if step.isnumeric():
         step = int(step)
     else:
         step = 3
-    decrypt = bool(input('Skip for encrypt and any key for decrypt message: '))
-    text = input("Enter your message: ")
+    decrypt = bool(input(decrypt_message))
+    text = input(text_message)
     return text, step, lang, decrypt
 
 
-def main():
+def main() -> PrettyTable:
     """Main controller"""
     text, step, lang, decrypt = data_collection()
-    # loading_anim()
     anim_load_bar(decrypt)
     encrypted_text = encrypt_message(text, step, lang, decrypt)
     table = PrettyTable()
