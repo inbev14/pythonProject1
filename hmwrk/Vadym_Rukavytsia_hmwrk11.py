@@ -65,15 +65,11 @@ def data_collection():
     """Collect data from user"""
     lang = input('Enter language (default="en" or "ua","ru"): ')
     language = choose_lang(lang)
-    if  language == ENGLISH:
+    if  language == ENGLISH or CYRILLIC:
         step_message = 'Enter key for cypher (number, skip=3): '
         decrypt_message = 'Skip for encrypt and any key for decrypt message: '
         text_message = 'Enter your message: '
     elif language == UKRAINIAN:
-        step_message = 'Введіть крок шифру (число, пропустити = 3): '
-        decrypt_message = 'Пропусти щоб зашифрувати або введи будь-яку букву для розфирування: '
-        text_message = 'Введи повідомлення: '
-    elif language == CYRILLIC:
         step_message = 'Введіть крок шифру (число, пропустити = 3): '
         decrypt_message = 'Пропусти щоб зашифрувати або введи будь-яку букву для розфирування: '
         text_message = 'Введи повідомлення: '
