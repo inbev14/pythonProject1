@@ -1,27 +1,23 @@
-def _price():
-    while True:
-        try:
-            price_int = float(input("What is Bitcoin price today?\n"))
-            return price_int
-        except ValueError:
-            print("Please, enter correct course in USD ")
-        
-        
-def _money():
-    while True:
-        try:
-            money_int = float(input("How much $ do you have?\n"))
-            return money_int
-        except ValueError:
-            print("Please, enter correct sum in USD")
-       
-
-def count():
-    price = _price()
-    money = _money()
-    result = format(money/price, '.7f')
-    print(f"You can buy {result} BTC")
-    return result
+import rich.repr
 
 
-count()
+@rich.repr.auto
+class Bird:
+    def __init__(self, name, eats=None, fly=True, extinct=False):
+        self.name = name
+        self.eats = list(eats) if eats else []
+        self.fly = fly
+        self.extinct = extinct
+
+
+# Note that the repr is still generated without Rich
+# Try commenting out the following line
+
+from rich import print
+
+BIRDS = {
+    "gull": Bird("gull", eats=["fish", "chips", "ice cream", "sausage rolls"]),
+    "penguin": Bird("penguin", eats=["fish"], fly=False),
+    "dodo": Bird("dodo", eats=["fruit"], fly=False, extinct=True),
+}
+print(BIRDS)

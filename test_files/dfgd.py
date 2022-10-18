@@ -11,3 +11,5 @@ for car in cars:
     print(f"{car.model}")
     print(f"{car.miles}")
     
+s = "Hello"
+print(s.isalpha())
