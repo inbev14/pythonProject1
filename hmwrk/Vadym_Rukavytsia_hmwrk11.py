@@ -1,6 +1,7 @@
-""" Julius Caesar's encryption machine in English, Ukrainian and rushka languages"""
+""" Julius Caesar's encryption machine in English, Ukrainian languages and cyrillic"""
 from string import ascii_lowercase
 from prettytable import PrettyTable
+from rich.progress import track
 import time
 
 
@@ -41,6 +42,17 @@ def loading_anim():
         time.sleep(0.1)
 
 
+def anim_load_bar(decrypt=False):
+    def scrape_data():
+        time.sleep(0.005)
+    if decrypt:
+        for _ in track(range(100), description='[green]Decrypting in progress: '):
+            scrape_data()
+    else:
+        for _ in track(range(100), description='[green]Encrypting in progress: '):
+            scrape_data()
+
+
 def encrypt_message(text: str, step=3, lang='en', decrypt=False):
     """Encrypting or decrypting message with step in ascii_letters"""
     cypher = make_cypher_key(step, lang)
@@ -61,7 +73,7 @@ def encrypt_message(text: str, step=3, lang='en', decrypt=False):
 def data_collection():
     """Collect data from user"""
     lang = input('Enter language (default="en" or "ua","ru"): ')
-    step = input('Enter key for cypher (number): ')
+    step = input('Enter key for cypher (number, skip=3): ')
     if step.isnumeric():
         step = int(step)
     else:
@@ -74,7 +86,8 @@ def data_collection():
 def main():
     """Main controller"""
     text, step, lang, decrypt = data_collection()
-    loading_anim()
+    # loading_anim()
+    anim_load_bar(decrypt)
     encrypted_text = encrypt_message(text, step, lang, decrypt)
     table = PrettyTable()
     table.field_names = ['Entered text', 'Return text', 'status']
@@ -95,4 +108,3 @@ if __name__ == '__main__':
     assert message_decrypted == encrypt_message(message_encrypted, decrypt=True)
     
     # message_ua = 'Привіт, Як у Тебе справи?'
-  
