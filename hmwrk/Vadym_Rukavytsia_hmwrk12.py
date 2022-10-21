@@ -30,10 +30,6 @@ def encoder(text: str, len_key: int) -> str:
         cryptogram += ''.join(cypher[key])
     return f'Cryptogram: {cryptogram}, key: {keys}'
 
-def decoder(text: str, key: int):
-    pass
-    
-    
 
 # def main(text: str, key: int) -> PrettyTable:
 #     """Main controller"""
