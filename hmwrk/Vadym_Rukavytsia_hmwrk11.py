@@ -48,7 +48,7 @@ def encrypt_message(text: str, step=3, lang='en', decrypt=False) -> str:
     """Encrypting or decrypting message with step in ascii_letters"""
     cypher = make_cypher_key(step, lang)
     if decrypt:
-        cypher = {cypher[let]: let for let in cypher}
+        cypher = {letter: key for letter, key in cypher.items()}
     encrypted_text = ""
     for letter in text:
         if letter.lower() in cypher.keys():
@@ -65,7 +65,7 @@ def data_collection():
     """Collect data from user"""
     lang = input('Enter language (default="en" or "ua","ru"): ')
     language = choose_lang(lang)
-    if  language == ENGLISH or CYRILLIC:
+    if language == ENGLISH or language == CYRILLIC:
         step_message = 'Enter key for cypher (number, skip=3): '
         decrypt_message = 'Skip for encrypt and any key for decrypt message: '
         text_message = 'Enter your message: '

@@ -1,4 +1,5 @@
 import rich.repr
+from rich import print
 
 
 @rich.repr.auto
@@ -13,7 +14,6 @@ class Bird:
 # Note that the repr is still generated without Rich
 # Try commenting out the following line
 
-from rich import print
 
 BIRDS = {
     "gull": Bird("gull", eats=["fish", "chips", "ice cream", "sausage rolls"]),
