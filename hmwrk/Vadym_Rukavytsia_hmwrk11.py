@@ -8,13 +8,13 @@ import time
 def choose_lang(lang: str) -> str:
     """Choosing language"""
     english = ['english', 'eng', 'en', 'usa', 'us', 'инглиш', 'англ', 'английский', 'англійська', 'інглиш', '']
-    cyrillic = ['russian', 'rus', 'ru', 'ру', 'cyr', 'cy', 'rushka', 'русня', 'рашка', 'рус', 'кир', 'russia', 'раша']
+    rusish = ['russian', 'rus', 'ru', 'ру', 'cyr', 'cy', 'rushka', 'русня', 'рашка', 'рус', 'кир', 'russia', 'раша']
     ukrainian = ['uk', 'ukr', 'ukrainian', 'укр', 'ук', 'українська', 'солов\'їна', 'ua', 'юа']
     if lang in english:
         return ENGLISH
     elif lang in ukrainian:
         return UKRAINIAN
-    elif lang in cyrillic:
+    elif lang in rusish:
         return CYRILLIC
     print(f'Language "{lang}" is unsupported yet.')
     exit()
@@ -61,9 +61,8 @@ def encrypt_message(text: str, step=3, lang='en', decrypt=False) -> str:
     return encrypted_text
 
 
-def data_collection():
-    """Collect data from user"""
-    lang = input('Enter language (default="en" or "ua","ru"): ')
+def change_message_lang(lang: str) -> tuple[str, str, str]:
+    """Change language in menu"""
     language = choose_lang(lang)
     if language == ENGLISH or language == CYRILLIC:
         step_message = 'Enter key for cypher (number, skip=3): '
@@ -73,6 +72,13 @@ def data_collection():
         step_message = 'Введіть крок шифру (число, пропустити = 3): '
         decrypt_message = 'Пропусти щоб зашифрувати або введи будь-яку букву для розфирування: '
         text_message = 'Введи повідомлення: '
+    return step_message, decrypt_message, text_message
+
+
+def data_collection() -> tuple[str, int, str, bool]:
+    """Collect data from user and return arguments for encrypting"""
+    lang = input('Enter language (default="en" or "ua","ru"): ')
+    step_message, decrypt_message, text_message = change_message_lang(lang)
     step = input(step_message)
     if step.isnumeric():
         step = int(step)
