@@ -16,17 +16,34 @@ class Planet(Turtle):
         self.increase_angle = increase_angle
         self.radius = radius
         self.star = star
-
+    
     def move(self):
         self.x = self.radius * cos(self.angle)
         self.y = self.radius * sin(self.angle)
         self.goto(self.star.xcor() + self.x, self.star.ycor() + self.y)
         self.angle += self.increase_angle
 
+# planet_size, planet_color, radius, circle_size, star
+class PlanetWithCircle(Planet):
+    def __init__(self):
+        Planet.__init__(self, planet_size, planet_color, radius, star, increase_angle):
+        self.planet_size = planet_size
+        self.circle_size = circle_size
+        self.planet_color = planet_color
+        self.radius = radius
+        self.star = star
+        self.angle = 0
+        self.size_background = (size - 0.2 for size in self.circle_size)
+        self.circle = Planet(planet_size=circle_size, planet_color='grey', radius=self.radius, star=self.star,
+                             increase_angle=0)
+        self.planet_background = Planet(planet_size=self.size_background, planet_color='grey',
+                                        radius=self.radius, star=self.star, increase_angle=0)
+        self.planet = Planet(planet_size=self.circle_size, planet_color='grey', radius=self.radius, star=self.star,
+                                 increase_angle=0)
+
 
 SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 950
-
 
 window = Screen()
 window.bgcolor('black')
@@ -44,21 +61,16 @@ earth = Planet((1, 1), 'blue', 150, sun, 0.003)
 moon = Planet((0.4, 0.4), 'grey', 20, earth, 0.02)
 mars = Planet((0.8, 0.8), '#F24F2F', 220, sun, 0.002)
 jupiter = Planet((2.5, 2.5), '#BF9C8C', 300, sun, 0.001)
-saturn = Planet((1.5, 1.5),"grey", 400, sun, 0.0007)
-saturn_circle = Planet((2.5, 2.5), 'grey', 0, saturn, 0)
-
-
+saturn = PlanetWithCircle()
 
 window.listen()
 
 while True:
-    
     mercury.move()
     venus.move()
     earth.move()
     moon.move()
     mars.move()
     jupiter.move()
-    saturn.move()
-    saturn_circle.move()
+    
     window.tracer(3)
